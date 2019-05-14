@@ -45,11 +45,11 @@ public class Layer {
                     GameObject.mapLayers.add(shadow);
                 }
 
-                if (mapData == 4) {
-                    ItemBoom itemBoom = new ItemBoom();
-                    itemBoom.position.set(tileX * 45, tileY * 45);
-                    GameObject.mapLayers.add(itemBoom);
-                }
+//                if (mapData == 4) {
+//                    ItemBoom itemBoom = new ItemBoom();
+//                    itemBoom.position.set(tileX * 45, tileY * 45);
+//                    GameObject.mapLayers.add(itemBoom);
+//                }
                 if (mapData == 6) {
                     ItemShoes itemShoes = new ItemShoes();
                     itemShoes.position.set(tileX * 45, tileY * 45);

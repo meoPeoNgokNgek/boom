@@ -1,9 +1,11 @@
 package program.scence;
 
 import program.Background;
+import program.Settings;
 import program.core.GameObject;
 import program.enemy.Enemy;
 import program.enemy.EnemySummoner;
+import program.maps.ItemShoes;
 import program.maps.Map;
 import program.menu.BackgroundMenu;
 import program.player.Player;
@@ -23,6 +25,9 @@ public class SceneStage extends Scene {
         addMap();
         this.music = AudioUtils.loadSound("assests/music/sfx/ok.wav");
         AudioUtils.replay(this.music);
+        Settings.BOOM_SIZE_MODE = 1;
+        ItemShoes item = GameObject.recycle(ItemShoes.class);
+        item.position.set(200,Settings.GAME_HEIGHT - 22);
     }
 
     @Override

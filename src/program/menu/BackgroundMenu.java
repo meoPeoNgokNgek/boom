@@ -2,6 +2,8 @@ package program.menu;
 
 import program.Settings;
 import program.core.GameObject;
+import program.player.Player;
+import program.renderer.SingleImageRenderer;
 import tklibs.SpriteUtils;
 
 import java.awt.*;
@@ -16,11 +18,45 @@ public class BackgroundMenu extends GameObject {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect((int) this.position.x, (int) this.position.y,
-                Settings.GAME_WIDTH - Settings.BACKGROUND_WIDTH, Settings.GAME_HEIGHT);
-        g.setColor(Color.GREEN);
+        g.drawImage(SpriteUtils.loadImage("assests/image/map/backgound/background_Info.png"),
+                (int) this.position.x,
+                (int) this.position.y,
+                null);
+        g.setColor(Color.white);
         g.setFont(Settings.BIG_SIZE);
-        g.drawString(GameObject.score + "", 750, 150);
+        g.drawString("Score : "+GameObject.score + "", 730, 150);
+
+        if (Player.hp == 3) {
+            g.drawImage(SpriteUtils.loadImage("assests/image/map/backgound/heart_1.png"),
+                    730,
+                    300,
+                    null);
+            g.drawImage(SpriteUtils.loadImage("assests/image/map/backgound/heart_1.png"),
+                    770,
+                    300,
+                    null);
+            g.drawImage(SpriteUtils.loadImage("assests/image/map/backgound/heart_1.png"),
+                    810,
+                    300,
+                    null);
+        }
+
+        if (Player.hp == 2) {
+            g.drawImage(SpriteUtils.loadImage("assests/image/map/backgound/heart_1.png"),
+                    730,
+                    300,
+                    null);
+            g.drawImage(SpriteUtils.loadImage("assests/image/map/backgound/heart_1.png"),
+                    770,
+                    300,
+                    null);
+        }
+
+        if (Player.hp == 1) {
+            g.drawImage(SpriteUtils.loadImage("assests/image/map/backgound/heart_1.png"),
+                    730,
+                    300,
+                    null);
+        }
     }
 }

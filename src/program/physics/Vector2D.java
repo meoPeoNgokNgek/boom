@@ -22,6 +22,15 @@ public class Vector2D {
         this.add(other.x, other.y);
     }
 
+    public void substract(double x, double y) {
+        this.x -= x;
+        this.y -= y;
+    }
+
+    public void substract(Vector2D other) {
+        this.substract(other.x, other.y);
+    }
+
     public void set(double x, double y) {
         this.x = x;
         this.y = y;
@@ -45,5 +54,13 @@ public class Vector2D {
 
     public Vector2D clone() {
         return new Vector2D(this.x,this.y);
+    }
+
+    @Override
+    public String toString() {
+        return "Vector2D{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

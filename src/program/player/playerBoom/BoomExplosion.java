@@ -14,12 +14,20 @@ import program.renderer.SingleImageRenderer;
 import java.awt.*;
 
 public class BoomExplosion extends GameObject {
+    static Renderer r1Mode1 =new SingleImageRenderer("assests/image/playerBoom/bombbang_left_1.png");
+    static Renderer r2Mode1 =new SingleImageRenderer("assests/image/playerBoom/bombbang_right_1.png");
+    static Renderer r3Mode1 =new SingleImageRenderer("assests/image/playerBoom/bombbang_up_1.png");
+    static Renderer r4Mode1 =new SingleImageRenderer("assests/image/playerBoom/bombbang_down_1.png");
+    static Renderer r1Mode2 =new SingleImageRenderer("assests/image/playerBoom/bombbang_left_2.png");
+    static Renderer r2Mode2 =new SingleImageRenderer("assests/image/playerBoom/bombbang_right_2.png");
+    static Renderer r3Mode2 =new SingleImageRenderer("assests/image/playerBoom/bombbang_up_2.png");
+    static Renderer r4Mode2 =new SingleImageRenderer("assests/image/playerBoom/bombbang_down_2.png");
+
     public int damage;
     Renderer r1;
     Renderer r2;
     Renderer r3;
     Renderer r4;
-    public static int MODE = Settings.BOOM_SIZE_MODE;
 
     public BoomExplosion() {
         GameObject.playerLayers.add(this);
@@ -47,7 +55,7 @@ public class BoomExplosion extends GameObject {
     public void killSomeThing() {
         this.killWood();
         this.killEnemy();
-//        this.killPlayer();
+        this.killPlayer();
     }
 
     public void killEnemy() {
@@ -64,23 +72,18 @@ public class BoomExplosion extends GameObject {
         }
     }
 
+    int count1 = 0;
     public void killPlayer() {
         Player player = GameObject.findIntersects(Player.class, this.hitBox);
         if(player != null) {
-            PlayerExplosion playerExplosion = GameObject.recycle(PlayerExplosion.class);
-            PlayerExplosion.MODE = 2;
-            playerExplosion.position.set(player.position);
-            frameCount();
-            if(true) {
-                playerExplosion.deactive();
-            }
+            player.takeDamage(1);
         }
     }
 
-    public int frameCount() {
-        int count = 0;
-        count++;
-
-        return count;
-    }
+//    public int frameCount() {
+//        int count = 0;
+//        count++;
+//
+//        return count;
+//    }
 }

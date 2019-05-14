@@ -27,26 +27,37 @@ public class BoomExplosionNgang extends BoomExplosion {
         }
     }
 
+    public void setMode(int mode) {
+
+        if(mode == 1) {
+            r1 = r1Mode1;
+            r2 = r2Mode1;
+            hitBox = new BoxCollider(this, 135 - 36, 35);
+        } else {
+            r1 = r1Mode2;
+            r2 = r2Mode2;
+            hitBox = new BoxCollider(this, 225 - 36, 35);
+        }
+    }
 
     //TODO: render r1, r2 .... ra null
 
     @Override
     public void render(Graphics g) {
         if(r1 != null && r2 != null) {
-            if(MODE == 1) {
-                this.anchor.set(0.5, 0 );//up right down left
-                r1.render(g, this);
-                this.anchor.set(0, 0);
-                r2.render(g, this);
-            }
+            this.anchor.set(Settings.BOOM_SIZE_MODE == 1 ? 0.5 : 0.75, 0);//up right down left
+            r1.render(g, this);
+            this.anchor.set(0, 0);
+            r2.render(g, this);
 
-            if(MODE == 2) {
-                this.anchor.set(0, 0.5);//up right down left
-                r1.render(g, this);
-                this.anchor.set(1, 0.5);
-                r2.render(g, this);
-            }
+//            if(MODE == 2) {
+//                this.anchor.set(0, 0.5);//up right down left
+//                r1.render(g, this);
+//                this.anchor.set(1, 0.5);
+//                r2.render(g, this);
+//            }
         }
-        this.anchor.set(0.5, 0.5);
+        this.anchor.set(Settings.BOOM_SIZE_MODE == 1 ? 0.2 : 0.4, 0);
+//        SingleImageRenderer.drawHitBox(g, this);
     }
 }

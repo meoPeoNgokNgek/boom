@@ -12,20 +12,21 @@ public class EnemySummoner extends GameObject {
 
     int count = 0;
     public EnemySummoner() {
-        enemy1 = GameObject.recycle(Enemy.class);
-        enemy1.position.set(0, 0);
+//        enemy1 = GameObject.recycle(Enemy.class);
+        enemy1 = new Enemy();
+        enemy1.position.set(700, 0);
 
         enemy2 = new Enemy();
         enemy2.position.set(0, 90);
 
         enemy3 = new Enemy();
-        enemy3.position.set(0, 180);
+        enemy3.position.set(700, 180);
 
         enemy4 = new Enemy();
         enemy4.position.set(0, 270);
 
         enemy5 = new Enemy();
-        enemy5.position.set(0, 360);
+        enemy5.position.set(700, 360);
 
         enemy6 = new Enemy();
         enemy6.position.set(0, 450);

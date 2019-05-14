@@ -25,13 +25,13 @@ public class SingleImageRenderer extends Renderer {
                 (int) (master.position.y - master.anchor.y * image.getHeight()),
                 null
         );
-        if(master.hitBox != null) {
-            this.drawHitBox(g, master);
-        }
+//        if(master.hitBox != null) {
+//            this.drawHitBox(g, master);
+//        }
     }
 
-    private void drawHitBox(Graphics g, GameObject master) {
-        g.setColor(Color.CYAN);
+    public static void drawHitBox(Graphics g, GameObject master) {
+        g.setColor(Color.BLACK);
         g.drawRect(
                 (int) master.hitBox.left(),
                 (int) master.hitBox.top(),

@@ -7,7 +7,7 @@ import program.renderer.SingleImageRenderer;
 public class ItemShoes extends GameObject {
     public ItemShoes() {
         renderer = new SingleImageRenderer("assests/image/map/item/item_shoe.png");
-        hitBox = new BoxCollider(this, 45,45);
+        hitBox = new BoxCollider(this, 40,40);
         anchor.set(0,0);
     }
 }

@@ -16,6 +16,7 @@ public class GameWindow extends JFrame {
         this.setTitle("Boom OFFLINE");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(false);
+        this.setLocation(300,50);
 
         this.addKeyListener(new KeyAdapter() {
             @Override

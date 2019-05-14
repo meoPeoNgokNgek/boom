@@ -23,6 +23,7 @@ public class Enemy extends GameObject {
         anchor.set(0.5, 0.34);
         velocity.set(Settings.ENEMY_SPEED, 0);
         this.explosionSound = AudioUtils.loadSound("assests/music/sfx/enemy-explosion.wav");
+
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Enemy extends GameObject {
     public void killPlayer() {
         Player player = GameObject.findIntersects(Player.class, this.hitBox);
         if(player != null) {
-            player.takeDamage(Settings.PLAYER_HP);
+            player.takeDamage(1);
         }
     }
 

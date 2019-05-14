@@ -3,12 +3,16 @@ package program.player;
 import program.Settings;
 import program.core.GameObject;
 import program.core.GameWindow;
+import program.enemy.Enemy;
 import program.maps.Box;
 import program.maps.ItemBoomSize;
 import program.maps.ItemShoes;
 import program.maps.Wood;
 import program.physics.BoxCollider;
+import program.physics.Vector2D;
 import program.player.playerBoom.BoomExplosion;
+import program.player.playerBoom.BoomExplosionDoc;
+import program.player.playerBoom.BoomExplosionNgang;
 import program.player.playerBoom.PlayerBoom;
 import program.renderer.SingleImageRenderer;
 import program.scence.SceneGameOver;
@@ -16,13 +20,15 @@ import program.scence.SceneManager;
 import tklibs.Mathx;
 
 public class Player extends GameObject {
+    public static int hp;
+
 
     public Player() {
-        hp = 10;
         GameObject.playerLayers.add(this);
-        hitBox = new BoxCollider(this, 20, 20);
+        hitBox = new BoxCollider(this.position, 40, 40, new Vector2D(0.5,0.1));
         renderer = new SingleImageRenderer("assests/image/player/0.png");
-        position.set(Settings.PLAYER_START_X, Settings.PLAYER_START_Y+10);
+        position.set(Settings.PLAYER_START_X, Settings.PLAYER_START_Y+5);
+        hp = 3;
     }
 
     public void run() {
@@ -31,8 +37,11 @@ public class Player extends GameObject {
         this.fire();
         this.limitPosition();
         this.eatItem();
-        System.out.println(hp);
+//        this.dead();
+//        System.out.println(hp);
     }
+
+
 
     int count = 0;
     public void fire() {
@@ -40,7 +49,9 @@ public class Player extends GameObject {
 
         if(GameWindow.isFirePress && count > Settings.PLAYER_FIRE_DELAY) {
             PlayerBoom boom = new PlayerBoom();
-            boom.position.set(this.position);
+            System.out.println(this.position.x / 45 + " " + this.position.y / 45);
+            boom.position.set((int)(this.position.x / 45) * 45 + 22
+                    ,(int)(this.position.y / 45) * 45 + 8);
             count = 0;
         }
     }
@@ -85,11 +96,6 @@ public class Player extends GameObject {
             vy = 0;
         }
 
-//        PlayerBoom boom = GameObject.findIntersects(PlayerBoom.class, this.hitBox.shift(vx, vy));
-//        if(boom != null) {
-//            vx = 0;
-//            vy = 0;
-//        }
         velocity.set(vx, vy);
     }
 
@@ -104,14 +110,24 @@ public class Player extends GameObject {
 //        PlayerExplosion playerExplosion = new PlayerExplosion();
 //        playerExplosion.position.set(this.position);
 
-        SceneManager.signNewScene(new SceneGameOver());
+        if (hp > 0) {
+            this.reset();
+//            playerExplosion.deactive();
+        }
+        if (hp == 0) SceneManager.signNewScene(new SceneGameOver());
     }
 
+    @Override
+    public void reset() {
+        super.reset();
+        this.position.set(Settings.PLAYER_START_X, Settings.PLAYER_START_Y+5);
+        hp -= 1;
+    }
 
     public void eatItem() {
         this.getShoes();
         this.getBoomSize();
-        System.out.println(Settings.BOOM_SIZE_MODE);
+//        System.out.println(Settings.BOOM_SIZE_MODE);
     }
 
     private void getShoes() {
@@ -119,7 +135,7 @@ public class Player extends GameObject {
 
         if (itemShoes != null) {
             itemShoes.deactive();
-            Settings.PLAYER_SPEED += 1;
+            Settings.PLAYER_SPEED += 2;
         }
     }
 

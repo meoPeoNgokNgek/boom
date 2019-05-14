@@ -36,41 +36,44 @@ public class GamePanel extends JPanel {
 
         @Override
         public void paint (Graphics g){
-            for (int i = 0; i < GameObject.backgroundLayers.size(); i++) {
-                GameObject object = GameObject.backgroundLayers.get(i);
-                if (object.active) {
-                    object.render(g);
+            try{
+                for (int i = 0; i < GameObject.backgroundLayers.size(); i++) {
+                    GameObject object = GameObject.backgroundLayers.get(i);
+                    if (object != null && object.active) {
+                        object.render(g);
+                    }
                 }
-            }
 
-            for (int i = 0; i < GameObject.mapLayers.size(); i++) {
-                GameObject object = GameObject.mapLayers.get(i);
-                if (object.active) {
-                    object.render(g);
+                for (int i = 0; i < GameObject.mapLayers.size(); i++) {
+                    GameObject object = GameObject.mapLayers.get(i);
+                    if (object != null && object.active) {
+                        object.render(g);
+                    }
                 }
-            }
 
-            for (int i = 0; i < GameObject.enemyLayers.size(); i++) {
-                GameObject object = GameObject.enemyLayers.get(i);
-                if (object.active) {
-                    object.render(g);
+                for (int i = 0; i < GameObject.enemyLayers.size(); i++) {
+                    GameObject object = GameObject.enemyLayers.get(i);
+                    if (object != null && object.active) {
+                        object.render(g);
+                    }
                 }
-            }
 
-            for (int i = 0; i < GameObject.playerLayers.size(); i++) {
-                GameObject object = GameObject.playerLayers.get(i);
-                if (object.active) {
-                    object.render(g);
+                for (int i = 0; i < GameObject.playerLayers.size(); i++) {
+                    GameObject object = GameObject.playerLayers.get(i);
+                    if (object.active) {
+                        object.render(g);
+                    }
                 }
-            }
 
-            for (int i = 0; i < GameObject.shadowLayers.size(); i++) {
-                GameObject object = GameObject.shadowLayers.get(i);
-                if (object.active) {
-                    object.render(g);
+                for (int i = 0; i < GameObject.shadowLayers.size(); i++) {
+                    GameObject object = GameObject.shadowLayers.get(i);
+                    if (object != null && object.active) {
+                        object.render(g);
+                    }
                 }
-            }
+            } catch(Exception ex) {
 
+            }
         }
 
         public void runAll () {

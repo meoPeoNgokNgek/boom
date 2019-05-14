@@ -9,7 +9,7 @@ public class Box extends GameObject {
     public Box() {
         hp = 1;
         anchor.set(0, 0);
-        hitBox = new BoxCollider(this, 45, 45);
+        hitBox = new BoxCollider(this, 43, 43);
         renderer = new SingleImageRenderer("assests/image/map/box/box1.png");
     }
 }

@@ -80,6 +80,7 @@ public class GameObject {
 
     public void run() {
         position.add(velocity);
+        System.out.println(objects.size());
     }
 
     public void deactive() {
